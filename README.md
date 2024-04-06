@@ -4,7 +4,7 @@ Welcome! Listed below are methods and practices used to keep this project somewh
 
 
 ## Folder Setup
-
+```
 📁 Assets
     📁 Scripts
         📄 General Scripts ...
@@ -17,10 +17,10 @@ Welcome! Listed below are methods and practices used to keep this project somewh
         📁 Scene Name ...
             📄 (Scene Name).psd
             📄 Other Scene Source Files ...
+```
 
 
-
-## SCREEN AND SCENE SETUP
+## Screen and Scene Setup
 
 - Each scene is 350 x 270 pixels.
 - Each scene is defined in a prefab with a unique name, typically a number.
@@ -39,7 +39,7 @@ Welcome! Listed below are methods and practices used to keep this project somewh
 
 
 
-## PLAYER SETUP
+## Player Setup
 
 - The player is stored in its own prefab.
 - The player size is about 13x13 pixels.
@@ -47,7 +47,7 @@ Welcome! Listed below are methods and practices used to keep this project somewh
 
 
 
-## UI SETUP
+## UI Setup
 
 - [UIController.cs] is used to control which menu is shown. Using `ShowMenu(int index)`, the menu with a specific index is transitioned to. Doing this disables all other menus so there's no worry about the menus rendering on top of each other.
 - Each menu is defined using [UIListController].
@@ -55,7 +55,7 @@ Welcome! Listed below are methods and practices used to keep this project somewh
 
 
 
-## SAVE SETUP
+## Save Setup
 
 - TODO
 - Controlled by [SaveManager.cs]
