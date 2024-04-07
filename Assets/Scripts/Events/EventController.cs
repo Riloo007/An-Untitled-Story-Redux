@@ -5,23 +5,32 @@ using UnityEngine.UI;
 
 public class EventController : MonoBehaviour
 {
+    // General
+    public bool gamePaused = false;
+
+    // UI
+    public UIController UIController;
+    public Menu PauseMenu;
+
+    // Rendering
     public Material BlurVMaterial;
     public Material BlurHMaterial;
     public RawImage BlurVImage;
     public RawImage BlurHImage;
-    public bool gamePaused = false;
-    public UIController UIController;
+
 
     void Start()
     {
-        UIController.ShowMenu(0);
+        UIController.ShowMenu(UIController.MainMenu);
+        // UIController.ShowMenu(0);
     }
 
     public void PauseGame() {
         gamePaused = true;
         BlurHImage.material = BlurHMaterial;
         BlurVImage.material = BlurVMaterial;
-        UIController.ShowMenu(3);
+        // UIController.ShowMenu(3);
+        UIController.ShowMenu(PauseMenu);
     }
     public void UnPauseGame() {
         gamePaused = false;

@@ -71,7 +71,7 @@ public class Splash : MonoBehaviour
         }
 
         if(state == 3) { // Remove used groups and stuff
-            UIController.ShowMenu(0);
+            UIController.ShowMenu(UIController.MainMenu);
             Destroy(splashScreen);
             Destroy(GetComponent<Splash>());
         }

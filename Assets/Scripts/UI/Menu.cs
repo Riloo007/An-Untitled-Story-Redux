@@ -1,13 +1,14 @@
 using System;
 using TMPro;
+using UnityEditor.SearchService;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
 
-public class UIListController : MonoBehaviour
+public class Menu : MonoBehaviour
 {
-    public CustomInputManager Input;
+    [HideInInspector] public CustomInputManager Input;
     public TextMeshProUGUI[] texts;
     // public UnityEvent[] menuActions;
     public bool uiDisabled;
@@ -42,6 +43,10 @@ public class UIListController : MonoBehaviour
         canvasTimer = 0;
     }
 
+    void OnValidate() {
+        
+    }
+
     void Start()
     {
         if(!canvasGroup) canvasGroup = gameObject.AddComponent<CanvasGroup>();
@@ -57,21 +62,12 @@ public class UIListController : MonoBehaviour
         }
 
         textTargetAlphas[0] = 1f;
-
-        // Input System
-        // InputAction up = inputActionsAsset.FindAction("Up");
-        // InputAction down = inputActionsAsset.FindAction("Down");
-        // InputAction select = inputActionsAsset.FindAction("Select");
-        // up.Enable();
-        // down.Enable();
-        // select.Enable();
-        // up.performed += SelectNext;
-        // down.performed += SelectPrevious;
-        // select.performed += SelectCurrent;
     }
 
     void Update()
     {
+        if(Input == null) Debug.LogAssertion("This menu was not added to the UIController!");
+
         Animate();
         if(uiDisabled) return;
 

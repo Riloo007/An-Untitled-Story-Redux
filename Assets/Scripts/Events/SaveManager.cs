@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class SaveManager : MonoBehaviour
 {
+    public Menu NewSlotMenu;
     public UIController UIController;
     public StartGame StartGame;
     public TMP_InputField textinput;
@@ -12,7 +13,7 @@ public class SaveManager : MonoBehaviour
     private string newSaveName;
 
     public void SelectSlot(int index) {
-        UIController.ShowMenu(5);
+        UIController.ShowMenu(NewSlotMenu);
         activeGameSlot = index;
     }
 

@@ -330,7 +330,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &6468350
 RectTransform:
   m_ObjectHideFlags: 0
@@ -519,7 +519,7 @@ GameObject:
   - component: {fileID: 162297208}
   - component: {fileID: 162297209}
   m_Layer: 5
-  m_Name: UI
+  m_Name: UI Controller
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -562,9 +562,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e20011432c2808a4fb3f9b0bdc920f74, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  UnityWarning: These menus are set in a list to make it easy to add more, WHICH
-    MEANS you cannot reorder them as defined here, otherwise scripts which use SetMenu(index)
-    will need to be adjusted to show the correct menu.
+  Input: {fileID: 1075709408}
+  MainMenu: {fileID: 6468351}
   Menus:
   - {fileID: 6468351}
   - {fileID: 1777349911}
@@ -572,6 +571,68 @@ MonoBehaviour:
   - {fileID: 1509992190}
   - {fileID: 1385301681}
   - {fileID: 1055121841}
+--- !u!1001 &169599402
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 1610360730}
+    m_Modifications:
+    - target: {fileID: 54710591693302774, guid: 07da80488f0cc1fb991efd490d3b06d6, type: 3}
+      propertyPath: m_Name
+      value: Deeptower
+      objectReference: {fileID: 0}
+    - target: {fileID: 3049671753262033760, guid: 07da80488f0cc1fb991efd490d3b06d6, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -3.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3049671753262033760, guid: 07da80488f0cc1fb991efd490d3b06d6, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -5.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 3049671753262033760, guid: 07da80488f0cc1fb991efd490d3b06d6, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0.030742107
+      objectReference: {fileID: 0}
+    - target: {fileID: 3049671753262033760, guid: 07da80488f0cc1fb991efd490d3b06d6, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3049671753262033760, guid: 07da80488f0cc1fb991efd490d3b06d6, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3049671753262033760, guid: 07da80488f0cc1fb991efd490d3b06d6, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3049671753262033760, guid: 07da80488f0cc1fb991efd490d3b06d6, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3049671753262033760, guid: 07da80488f0cc1fb991efd490d3b06d6, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3049671753262033760, guid: 07da80488f0cc1fb991efd490d3b06d6, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3049671753262033760, guid: 07da80488f0cc1fb991efd490d3b06d6, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 07da80488f0cc1fb991efd490d3b06d6, type: 3}
+--- !u!4 &169599403 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 3049671753262033760, guid: 07da80488f0cc1fb991efd490d3b06d6, type: 3}
+  m_PrefabInstance: {fileID: 169599402}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &188955521
 GameObject:
   m_ObjectHideFlags: 0
@@ -2113,8 +2174,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -28, y: 11.59}
-  m_SizeDelta: {x: 0.7, y: 0.16}
+  m_AnchoredPosition: {x: 47, y: 61.589996}
+  m_SizeDelta: {x: 1.5, y: 0.7}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &609228930
 MonoBehaviour:
@@ -2171,7 +2232,7 @@ MonoBehaviour:
   m_fontSizeMax: 72
   m_fontStyle: 0
   m_HorizontalAlignment: 1
-  m_VerticalAlignment: 256
+  m_VerticalAlignment: 2048
   m_textAlignment: 65535
   m_characterSpacing: 0
   m_wordSpacing: 0
@@ -2259,11 +2320,11 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 162297209}
         m_TargetAssemblyTypeName: UIController, Assembly-CSharp
-        m_MethodName: ShowMainMenu
-        m_Mode: 1
+        m_MethodName: ShowMenu
+        m_Mode: 2
         m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_ObjectArgument: {fileID: 6468351}
+          m_ObjectArgumentAssemblyTypeName: Menu, Assembly-CSharp
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -7646,7 +7707,7 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: -0.3134129, w: 0.8133859}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
-  m_hasFontAssetChanged: 1
+  m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
 --- !u!222 &789037277
@@ -7704,10 +7765,10 @@ MonoBehaviour:
       - m_Target: {fileID: 162297209}
         m_TargetAssemblyTypeName: UIController, Assembly-CSharp
         m_MethodName: ShowMenu
-        m_Mode: 3
+        m_Mode: 2
         m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_ObjectArgument: {fileID: 1385301681}
+          m_ObjectArgumentAssemblyTypeName: Menu, Assembly-CSharp
           m_IntArgument: 4
           m_FloatArgument: 0
           m_StringArgument: 
@@ -12814,10 +12875,10 @@ MonoBehaviour:
       - m_Target: {fileID: 162297209}
         m_TargetAssemblyTypeName: UIController, Assembly-CSharp
         m_MethodName: ShowMenu
-        m_Mode: 3
+        m_Mode: 2
         m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_ObjectArgument: {fileID: 1356218329}
+          m_ObjectArgumentAssemblyTypeName: Menu, Assembly-CSharp
           m_IntArgument: 2
           m_FloatArgument: 0
           m_StringArgument: 
@@ -13071,7 +13132,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1055121840
 RectTransform:
   m_ObjectHideFlags: 0
@@ -13265,7 +13326,6 @@ GameObject:
   - component: {fileID: 1075709406}
   - component: {fileID: 1075709403}
   - component: {fileID: 1075709405}
-  - component: {fileID: 1075709409}
   - component: {fileID: 1075709410}
   m_Layer: 0
   m_Name: Events
@@ -13333,12 +13393,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4162f7e05b5237489a81a10da229121, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gamePaused: 0
+  UIController: {fileID: 162297209}
+  PauseMenu: {fileID: 1509992190}
   BlurVMaterial: {fileID: 2100000, guid: f622c006508824f49b7e9686e271b67a, type: 2}
   BlurHMaterial: {fileID: 2100000, guid: 44161713555617943912d836ad3ae326, type: 2}
   BlurVImage: {fileID: 702705247}
   BlurHImage: {fileID: 727598000}
-  gamePaused: 0
-  UIController: {fileID: 162297209}
 --- !u!114 &1075709407
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13371,18 +13432,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   inputActionAsset: {fileID: -944628639613478452, guid: d7cea94888fdbb849aafa60107a8c35a, type: 3}
---- !u!114 &1075709409
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1075709402}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5b53afbc7e7438b43a099e504d632501, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &1075709410
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13395,6 +13444,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 515894cafb703604196e8c0271552430, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  NewSlotMenu: {fileID: 1055121841}
   UIController: {fileID: 162297209}
   StartGame: {fileID: 1075709403}
   textinput: {fileID: 295384335}
@@ -13832,10 +13882,10 @@ MonoBehaviour:
       - m_Target: {fileID: 162297209}
         m_TargetAssemblyTypeName: UIController, Assembly-CSharp
         m_MethodName: ShowMenu
-        m_Mode: 3
+        m_Mode: 2
         m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_ObjectArgument: {fileID: 1385301681}
+          m_ObjectArgumentAssemblyTypeName: Menu, Assembly-CSharp
           m_IntArgument: 4
           m_FloatArgument: 0
           m_StringArgument: 
@@ -14085,10 +14135,10 @@ MonoBehaviour:
       - m_Target: {fileID: 162297209}
         m_TargetAssemblyTypeName: UIController, Assembly-CSharp
         m_MethodName: ShowMenu
-        m_Mode: 3
+        m_Mode: 2
         m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_ObjectArgument: {fileID: 1777349911}
+          m_ObjectArgumentAssemblyTypeName: Menu, Assembly-CSharp
           m_IntArgument: 1
           m_FloatArgument: 0
           m_StringArgument: 
@@ -14861,6 +14911,7 @@ Transform:
   - {fileID: 1588671108}
   - {fileID: 892652433}
   - {fileID: 1230155820}
+  - {fileID: 169599403}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &1644322997 stripped
@@ -15479,11 +15530,11 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 162297209}
         m_TargetAssemblyTypeName: UIController, Assembly-CSharp
-        m_MethodName: ShowMainMenu
-        m_Mode: 1
+        m_MethodName: ShowMenu
+        m_Mode: 2
         m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_ObjectArgument: {fileID: 6468351}
+          m_ObjectArgumentAssemblyTypeName: Menu, Assembly-CSharp
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -15911,7 +15962,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Texture: {fileID: 2800000, guid: a70e3b202b5f27443a0197440db3f11d, type: 3}
+  m_Texture: {fileID: 2800000, guid: d230a0c468703c648b8bbbea962e3623, type: 3}
   m_UVRect:
     serializedVersion: 2
     x: 0

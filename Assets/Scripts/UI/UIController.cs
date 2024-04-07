@@ -1,37 +1,38 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
+using UnityEditor.PackageManager;
 using UnityEngine;
 
 public class UIController : MonoBehaviour
 {
-    [TextArea]
-    public string UnityWarning = "These menus are set in a list to make it easy to add more, WHICH MEANS you cannot reorder them as defined here, otherwise scripts which use SetMenu(index) will need to be adjusted to show the correct menu.";
-    public UIListController[] Menus;
+    public CustomInputManager Input;
+    public Menu MainMenu;
+    public Menu[] Menus;
 
-    public void ShowMainMenu() {
-        ShowMenu(0);
+    void OnValidate() {
+        foreach (var menu in Menus)
+        {
+            if(menu != null) menu.Input = Input;
+        }
     }
 
-    public void ShowMenu(int index) {
+    void Start() {
+        ShowMenu(MainMenu);
+    }
 
-        foreach (var menu in Menus) menu.Disable();
+    public void ShowMenu(Menu menu) {
+        HideAllMenus();
+        menu.Enable();
+    }
+
+    public void ShowMenuByIndex(int index) {
+        HideAllMenus();
         Menus[index].Enable();
     }
 
     public void HideAllMenus() {
         foreach (var menu in Menus) menu.Disable();
-    }
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        ShowMenu(0);
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 }
