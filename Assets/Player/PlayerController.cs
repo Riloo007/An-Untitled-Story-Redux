@@ -7,13 +7,22 @@ using UnityEngine.Rendering;
 
 public class PlayerController : MonoBehaviour
 {
+    
     // Constants
-    public float jumpForce = 10;
+    [Tooltip("The upwards velocity of the player the frame a jump begins")]
+    public float initialJumpVelocity = 0.005f;
+
+    [Tooltip("The longest the user can hold the jump button for a maximum jump")]
+    public float risingJumpDuration = .3f;
+
+    [Tooltip("The jump formula multiplier (doesn't affect initial jump velocity)")]
+    public float longJumpMultiplier = 0.1f;
+
     public float gravity = 1;
     public Transform groundCheckPosition;
     public Transform roofCheckPosition;
     public LayerMask groundLayer;
-    public int maxJumps = 2;
+    public int maxJumpCount = 2;
     public float moveSpeed = 2;
     private Rigidbody2D rb;
     private Transform tf;
@@ -26,14 +35,16 @@ public class PlayerController : MonoBehaviour
 
     // Multi Frame variables
     private bool isPressingJump; // Used to track longer jumps
-    private int jumpCount; // Used for multi-jumps
-    private float jumpTime; // Used to time longer jumps by holding the spacebar
-    private Vector2 velocity;
+    private int currentJumpCount; // Used for multi-jumps
+    private float jumpTimer; // Used to time longer jumps by holding the spacebar
+    public Vector2 velocity;
 
 
     // Single Frame variables
     private bool pressedJump;
-    private bool isGrounded;
+    private bool touchingGround;
+    private bool wasGrounded;
+    private bool groundedEnough;
     private bool isRoofed;
     private float horizontalInput;
 
@@ -47,6 +58,9 @@ public class PlayerController : MonoBehaviour
         tf = GetComponent<Transform>();
     }
 
+    void UpdateTimers() {
+        jumpTimer += Time.deltaTime;
+    }
 
     void Update()
     // void FixedUpdate()
@@ -54,33 +68,49 @@ public class PlayerController : MonoBehaviour
         if(EventController.gamePaused == true) return;
         if(!active) return;
 
-        // Constant Forces
-        ApplyConstantForces();
+        UpdateTimers();
+        Physics();
+        if(groundedEnough) currentJumpCount = 1;
+
+
+        CaptureInput(); // isPressingJump, pressedJump, horizontalInput
+
+        if(pressedJump && currentJumpCount < maxJumpCount) {
+            jumpTimer = 0;
+            currentJumpCount += 1;
+            velocity.y = Mathf.Max(velocity.y, initialJumpVelocity);
+        }
+
+        if(currentJumpCount <= maxJumpCount && isPressingJump) {
+            // Apply a sloped velocity to the player
+            velocity.y += Mathf.Max(-Mathf.Pow(jumpTimer, 2) + risingJumpDuration, 0) * longJumpMultiplier;
+        }
+
+
+
         
         // User Forces
 
         // Jump is still pressed from last frame, continue going up
         // if(isPressingJump) Jump();
 
-        CaptureInput();
 
-        if(isGrounded) jumpCount = 1;
 
-        if(pressedJump && jumpCount < maxJumps) {
-            jumpCount += 1;
-            // jumpTime = Time.fixedTime;
-            // Jump();
-            velocity.y = jumpForce;
-        }
+        // if(pressedJump && currentJumpCount < maxJumpCount) {
+        //     currentJumpCount += 1;
+        //     // jumpTime = Time.fixedTime;
+        //     // Jump();
+        //     velocity.y = jumpStrength;
+        // }
 
         velocity.x = horizontalInput * moveSpeed;
 
-        if(velocity.magnitude > 0.01 && isGrounded) {
-            Particles();
-            // Debug.Log(velocity);
-        } else {
-            // particles.Pause();
-        }
+        // if(velocity.magnitude > 0.01 && touchingGround) {
+        //     Particles();
+        //     // Debug.Log(velocity);
+        // } else {
+        //     // particles.Pause();
+        // }
 
         // Apply movement
         rb.MovePosition(rb.position + velocity);
@@ -117,21 +147,23 @@ public class PlayerController : MonoBehaviour
 
     // Jump with account to jumpCount; The second jump should have a different force than the first one
     void Jump() {
-        velocity.y = jumpForce;
+        velocity.y = longJumpMultiplier;
     }
 
-    void ApplyConstantForces() {
+    void Physics() {
         velocity -= new Vector2(0, gravity * Time.deltaTime);
+        wasGrounded = groundedEnough;
 
         isRoofed = Physics2D.OverlapCircle(roofCheckPosition.position, .02f, groundLayer);
-        isGrounded = Physics2D.OverlapCircle(groundCheckPosition.position, .02f, groundLayer);
+        touchingGround = Physics2D.OverlapCircle(groundCheckPosition.position, .005f, groundLayer);
+        groundedEnough = Physics2D.OverlapCircle(groundCheckPosition.position, .03f, groundLayer);
         // if(velocity.y < -1 && isGrounded) velocity.y = -.01f;
         // if(velocity.y < -1 && isGrounded) velocity.y = 0f;
         if(velocity.y > 0f && isRoofed) {
             // Bounce back off the roof
             velocity.y = 0f;
         }
-        if(velocity.y < 0f && isGrounded) {
+        if(velocity.y < 0f && touchingGround) {
             // Stop falling so sliding doesn't happen
             velocity.y = 0f;
 

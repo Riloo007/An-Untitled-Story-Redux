@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 2739949699344985808}
   m_Layer: 0
   m_Name: 01
-  m_TagString: Untagged
+  m_TagString: AlwaysLoaded
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -59,7 +59,7 @@ GameObject:
   - component: {fileID: 3129538297812431569}
   - component: {fileID: 4531550690092576383}
   - component: {fileID: 3875087108582878946}
-  m_Layer: 9
+  m_Layer: 10
   m_Name: Scene
   m_TagString: Untagged
   m_Icon: {fileID: 0}
