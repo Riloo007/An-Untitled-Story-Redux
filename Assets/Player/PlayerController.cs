@@ -86,23 +86,6 @@ public class PlayerController : MonoBehaviour
             velocity.y += Mathf.Max(-Mathf.Pow(jumpTimer, 2) + risingJumpDuration, 0) * longJumpMultiplier;
         }
 
-
-
-        
-        // User Forces
-
-        // Jump is still pressed from last frame, continue going up
-        // if(isPressingJump) Jump();
-
-
-
-        // if(pressedJump && currentJumpCount < maxJumpCount) {
-        //     currentJumpCount += 1;
-        //     // jumpTime = Time.fixedTime;
-        //     // Jump();
-        //     velocity.y = jumpStrength;
-        // }
-
         velocity.x = horizontalInput * moveSpeed;
 
         // if(velocity.magnitude > 0.01 && touchingGround) {

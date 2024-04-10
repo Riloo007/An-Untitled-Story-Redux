@@ -41,17 +41,34 @@ Welcome! Listed below are methods and practices used to keep this project somewh
 
 ## Player Setup
 
+### Random Facts 🤷‍♂️
 - The player is stored in its own prefab.
 - The player size is about 13x13 pixels.
-- Due to the complicated nature of the game adding so many abilities, the player controller should be modularized somehow. Still a work in progress.
+- Scripting this is the *most complicated thing so far*
+
+### Abilities
+- Moving left and right
+    - A constant velocity is applied in the direction of the horizontal input
+- Jumping
+    - A jump is split into a few different parts:
+    - First, a check is done to see if the egg is close enough to the ground to justify jumping. This means that the player can jump even if they aren't perfectly grounded. This helps handle odd cases where the player moves away from an incline as the player tries to jump.
+    - ![](/Documentation/playerSetup.png)
+    - Next, two different accelerations are applied.
+    - One is an immediate upwards velocity, the `initialJumpVelocity`.
+    - The next is a formula that uses both `risingJumpDuration` and `longJumpMultiplier` to apply an continued but declining upwards force as the player holds jump. The formula is timed using the variable `jumpTimer`. This allows for higher jumps as the player holds the jump key longer.
+    - ![](/Documentation/PlayerGraphs.png)
+    - Before the player hits the ground `currentJumpCount` and `maxJumpCount` are used to enable double, triple, or quadruple jumping.
+
+### Notice
+If you look at the script right now, you'll notice it's a wild haystack of things going on. Just a casual work in progress 🙃.
 
 
 
 ## UI Setup
 
-- [UIController.cs] is used to control which menu is shown. Using `ShowMenu(int index)`, the menu with a specific index is transitioned to. Doing this disables all other menus so there's no worry about the menus rendering on top of each other.
-- Each menu is defined using [UIListController].
-- Each menu is assigned an index in the inspector under the UIController. This index should not be changed as it becomes the hardcoded index used by various scripts to navigate to and show the correct menus.
+- Each menu is defined with a `Menu.cs` component.
+- `UIController.cs` is used to control which of these menus are shown. To show a specific menu, use `ShowMenu(Menu menu)`
+- Each menu should be added to the `Menus[]` list on the UIController GameObject.
 
 
 
