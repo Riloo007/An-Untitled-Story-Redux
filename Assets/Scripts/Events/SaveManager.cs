@@ -82,24 +82,26 @@ public class SaveManager : MonoBehaviour
     public void LoadGameSlot(int index) {
         activeGameSlot = index;
 
-        saveName = saveData[activeGameSlot].saveName;
-
+        // Load the player with the save data
         player.maxJumpCount = saveData[activeGameSlot].maxJumpCount;
         player.initialJumpVelocity = saveData[activeGameSlot].initialJumpVelocity;
         player.risingJumpDuration = saveData[activeGameSlot].risingJumpDuration;
         player.longJumpMultiplier = saveData[activeGameSlot].longJumpMultiplier;
         player.transform.position = new Vector3(saveData[activeGameSlot].position[0], saveData[activeGameSlot].position[1], saveData[activeGameSlot].position[2]);
 
+        // Start Game
         UIController.HideAllMenus();
         sceneController.overrideTransformEnabled = false;
         player.active = true;
     }
 
     public void SaveGame() {
-        // Todo save game to file using activeGameSlot as an index
+        // Recompile the slot data
         SlotData data = new(player) {
-            saveName = saveName
+            saveName = saveData[activeGameSlot].saveName,
         };
+
+        // Save the data
         SaveFile.SaveData(data, activeGameSlot);
     }
 }

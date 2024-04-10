@@ -57,5 +57,26 @@ Welcome! Listed below are methods and practices used to keep this project somewh
 
 ## Save Setup
 
-- TODO
-- Controlled by [SaveManager.cs]
+### Notice
+This is my first time making use of both classes AND file saving in C#! Things may be somewhat jankily thrown together, but honestly, I dunno. That's what documentation is for. 😁
+
+### Structure
+- `SlotData.cs` is a class that defines the structure of the save file. Many variables here, such as jump height, can also be found in `PlayerController.cs`.
+- `SaveFile.cs` is the system that directly saves and loads file(s) from the user's storage. Usage:
+    - To save: `SaveFile.SaveData(SlotData data, int slot)` where `slot` is the game slot ranging from 0 to 2.
+    - To load: `SaveFile.LoadData(int slot)` where `slot` is the game slot ranging from 0 to 2.
+- `SaveManager.cs` is the script running in the scene that handles the UI to load, overwrite, and save games. Notably, the `LoadGameSlot(int index)` function handles setting each of the values from the `SlotData` structure into the `PlayerController`.
+
+### Adding variables to the save file
+Note: Try to keep most variables attatched to the player controller for easier handling, as the `SlotData` class is constructed using a `PlayerController`
+- `SlotData.cs`
+    - Add a public variable
+    - Optionally add an assignment in the constructor if the variable should be attatched to the `PlayerController`.
+- `SaveManager.cs`
+    - In `LoadGameSlot(int index)`, assign the `player` variable proper values from the `saveData` variable.
+    - In `SaveGame()`, assign any values not attatched to the `PlayerController` (for example, the slot save name)
+
+
+
+## Contributing
+Feel free to fork this repository and contribute to its development! I will be leaving the project in the dust starting May 1st 2024 and there it will lie for about two years. In the meantime, feel free to contribute art for each scene, or take it for yourself and run with it! Just be sure to credit me as Rilo007 or Glitched Digital. 😉
