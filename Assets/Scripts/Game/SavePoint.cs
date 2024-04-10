@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class SavePoint : MonoBehaviour
 {
+    public SaveManager saveManager;
     public Transform playerTransform;
     public float allowedDistance;
     public Animator animator;
@@ -25,6 +26,7 @@ public class SavePoint : MonoBehaviour
             // Save
             Debug.Log("Save Instigated");
             animator.SetTrigger("Save");
+            saveManager.SaveGame();
         }
     }
 }

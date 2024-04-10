@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -23,8 +24,15 @@ public class SceneController : MonoBehaviour
     void Update()
     {
         cameraTransform.position = new Vector3(closestSceneTransform.position.x, closestSceneTransform.position.y, -10f);
-        if(closestSceneTransform.gameObject.TryGetComponent<SceneColor>(out var sc)) borderColor.color = sc.color;
-        else borderColor.color = Color.black;
+        Color bc = closestSceneTransform.GetComponent<SceneColor>().color;
+        borderColor.color = new Color(bc.r, bc.g, bc.b, 1);
+        
+        // if(closestSceneTransform.gameObject.TryGetComponent<SceneColor>(out SceneColor sc)) {
+        //     borderColor.color = sc.color;
+        //     Debug.Log(sc);
+        // } else {
+        //     borderColor.color = Color.black;
+        // }
 
         // Update Scenes
 

@@ -10,13 +10,13 @@ public class PlayerController : MonoBehaviour
     
     // Constants
     [Tooltip("The upwards velocity of the player the frame a jump begins")]
-    public float initialJumpVelocity = 0.005f;
+    public float initialJumpVelocity = 0.02f;
 
     [Tooltip("The longest the user can hold the jump button for a maximum jump")]
-    public float risingJumpDuration = .3f;
+    public float risingJumpDuration = .1f;
 
     [Tooltip("The jump formula multiplier (doesn't affect initial jump velocity)")]
-    public float longJumpMultiplier = 0.1f;
+    public float longJumpMultiplier = 0.001f;
 
     public float gravity = 1;
     public Transform groundCheckPosition;
@@ -181,5 +181,10 @@ public class PlayerController : MonoBehaviour
         isPressingJump = Input.GetKey(KeyCode.UpArrow);
         pressedJump = Input.GetKeyDown(KeyCode.UpArrow);
         horizontalInput = Input.GetAxis("Horizontal");
+    }
+
+    public static implicit operator PlayerController(SlotData v)
+    {
+        throw new NotImplementedException();
     }
 }

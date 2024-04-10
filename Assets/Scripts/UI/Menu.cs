@@ -71,7 +71,7 @@ public class Menu : MonoBehaviour
         Animate();
         if(uiDisabled) return;
 
-        if(Input.GetActionPressed("Select")) SelectCurrent();
+        if(Input.GetActionPressed("Select") || Input.GetActionPressed("Submit")) SelectCurrent();
         if(Input.GetActionPressed("Up")) SelectPrevious();
         if(Input.GetActionPressed("Down")) SelectNext();
     }
@@ -83,7 +83,7 @@ public class Menu : MonoBehaviour
         }
     }
 
-    void SelectNext(InputAction.CallbackContext context = new InputAction.CallbackContext()) {
+    public void SelectNext(InputAction.CallbackContext context = new InputAction.CallbackContext()) {
         if(SelectedIndex >= texts.Length - 1) return;
 
         textTargetAlphas[SelectedIndex] = 0.2f;
