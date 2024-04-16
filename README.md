@@ -23,11 +23,16 @@ Welcome! Listed below are methods and practices used to keep this project somewh
 ## Screen and Scene Setup
 
 - Each scene is 350 x 270 pixels.
-- Each scene is defined in a prefab with a unique name, typically a number.
-- Each scene typically comprises of the base following:
-    - Foreground (Stored in [Scenes/(sceneName)/FG.png]): Renders above the player
-    - Background (Stored in [Scenes/(sceneName)/BG.png]): Renders below the player
-    - A Collider, placed on the Ground Layer
+- Each scene is defined in a prefab with a unique name.
+- Layers
+    - `-10` Background
+    - `-5` Alt Backgrounds (ex. hidden rooms)
+    - `0` Player
+    - `5` Alt Foregrounds (ex. anything not part of a hidden room)
+    - `10` Foreground (ex. anything part of the scene)
+- Scene Components:
+    - Image layers, see above
+    - A Collider placed on the Ground Layer
     - A [SceneColor.cs] on the root node, which just changes the color of the extra screen space for individual scenes.
 - Scenes are all placed in one single Unity Scene, "Multiscene.unity"
 - The prefabs can easily be snapped into place in the multiscene by checking the "Snap to Scene Grid" option in the transform controls.
